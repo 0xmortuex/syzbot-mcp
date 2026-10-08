@@ -1,0 +1,78 @@
+============================================
+WARNING: possible recursive locking detected
+syzkaller #0 Not tainted
+--------------------------------------------
+syz.1.33/5940 is trying to acquire lock:
+ffff88805245a868 (&subsys->lock){+.+.}-{4:4}, at: nvmet_ctrl_free+0xa6/0x8e0 drivers/nvme/target/core.c:1766
+
+but task is already holding lock:
+ffff88805245a868 (&subsys->lock){+.+.}-{4:4}, at: nvmet_port_del_ctrls+0x2e/0x150 drivers/nvme/target/core.c:308
+
+other info that might help us debug this:
+ Possible unsafe locking scenario:
+
+       CPU0
+       ----
+  lock(&subsys->lock);
+  lock(&subsys->lock);
+
+ *** DEADLOCK ***
+
+ May be due to missing lock nesting notation
+
+locks held by syz.1.33/5940: 5, last CPU#0:
+ #0: ffff88801eb8c460 (sb_writers#12){.+.+}-{0:0}, at: filename_unlinkat+0x1ad/0x730 fs/namei.c:5696
+ #1: ffff888053089440 (&default_group_class[depth - 1]#2/1){+.+.}-{4:4}, at: inode_lock_nested include/linux/fs.h:1069 [inline]
+ #1: ffff888053089440 (&default_group_class[depth - 1]#2/1){+.+.}-{4:4}, at: __start_dirop fs/namei.c:2918 [inline]
+ #1: ffff888053089440 (&default_group_class[depth - 1]#2/1){+.+.}-{4:4}, at: start_dirop fs/namei.c:2942 [inline]
+ #1: ffff888053089440 (&default_group_class[depth - 1]#2/1){+.+.}-{4:4}, at: filename_unlinkat+0x262/0x730 fs/namei.c:5700
+ #2: ffff8880531230c0 (&sb->s_type->i_mutex_key#26){++++}-{4:4}, at: inode_lock include/linux/fs.h:1024 [inline]
+ #2: ffff8880531230c0 (&sb->s_type->i_mutex_key#26){++++}-{4:4}, at: vfs_unlink+0xd3/0xbd0 fs/namei.c:5635
+ #3: ffffffff8ff5f3c8 (nvmet_config_sem){++++}-{4:4}, at: nvmet_port_subsys_drop_link+0x53/0x310 drivers/nvme/target/configfs.c:1109
+ #4: ffff88805245a868 (&subsys->lock){+.+.}-{4:4}, at: nvmet_port_del_ctrls+0x2e/0x150 drivers/nvme/target/core.c:308
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 5940 Comm: syz.1.33 Not tainted syzkaller #0 PREEMPT(full) 
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 08/26/2026
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x100/0x190 lib/dump_stack.c:120
+ print_deadlock_bug.cold+0xbd/0xca kernel/locking/lockdep.c:3085
+ check_deadlock kernel/locking/lockdep.c:3137 [inline]
+ validate_chain kernel/locking/lockdep.c:3939 [inline]
+ __lock_acquire+0x13f4/0x1f40 kernel/locking/lockdep.c:5288
+ lock_acquire kernel/locking/lockdep.c:5942 [inline]
+ lock_acquire+0x1d1/0x380 kernel/locking/lockdep.c:5899
+ __mutex_lock_common kernel/locking/mutex.c:646 [inline]
+ __mutex_lock+0x1a4/0x1bd0 kernel/locking/mutex.c:821
+ nvmet_ctrl_free+0xa6/0x8e0 drivers/nvme/target/core.c:1766
+ kref_put include/linux/kref.h:65 [inline]
+ nvmet_ctrl_put drivers/nvme/target/core.c:1794 [inline]
+ nvmet_cq_destroy drivers/nvme/target/core.c:867 [inline]
+ nvmet_cq_put+0x158/0x200 drivers/nvme/target/core.c:848
+ nvmet_fc_delete_target_queue drivers/nvme/target/fc.c:936 [inline]
+ nvmet_fc_target_assoc_free+0x418/0x2220 drivers/nvme/target/fc.c:1173
+ kref_put include/linux/kref.h:65 [inline]
+ nvmet_fc_tgt_a_put drivers/nvme/target/fc.c:1195 [inline]
+ nvmet_fc_delete_ctrl+0x717/0x7e0 drivers/nvme/target/fc.c:1581
+ nvmet_port_del_ctrls+0xfb/0x150 drivers/nvme/target/core.c:311
+ nvmet_port_subsys_drop_link+0x1e8/0x310 drivers/nvme/target/configfs.c:1119
+ configfs_unlink+0x3cc/0x800 fs/configfs/symlink.c:258
+ vfs_unlink+0x2f0/0xbd0 fs/namei.c:5649
+ filename_unlinkat+0x408/0x730 fs/namei.c:5719
+ __do_sys_unlinkat fs/namei.c:5748 [inline]
+ __se_sys_unlinkat fs/namei.c:5740 [inline]
+ __x64_sys_unlinkat+0xc0/0x130 fs/namei.c:5740
+ do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
+ do_syscall_64+0x123/0x790 arch/x86/entry/syscall_64.c:84
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7ff78659e159
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ff78739d028 EFLAGS: 00000246 ORIG_RAX: 0000000000000107
+RAX: ffffffffffffffda RBX: 00007ff786826090 RCX: 00007ff78659e159
+RDX: 0000000000000000 RSI: 0000200000000780 RDI: ffffffffffffff9c
+RBP: 00007ff78663506b R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007ff786826128 R14: 00007ff786826090 R15: 00007ffd775068a8
+ </TASK>

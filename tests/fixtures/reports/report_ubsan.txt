@@ -1,0 +1,37 @@
+loop0: detected capacity change from 0 to 40427
+------------[ cut here ]------------
+UBSAN: shift-out-of-bounds in fs/f2fs/super.c:3950:27
+shift exponent 4294967287 is too large for 64-bit type 'sector_t' (aka 'unsigned long long')
+CPU: 1 UID: 0 PID: 5622 Comm: syz-executor329 Not tainted syzkaller #0 PREEMPT(full) 
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 07/24/2026
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xe8/0x150 lib/dump_stack.c:120
+ ubsan_epilogue+0xa/0x30 lib/ubsan.c:233
+ __ubsan_handle_shift_out_of_bounds+0x36d/0x400 lib/ubsan.c:494
+ __f2fs_commit_super+0x43e/0x4d0 fs/f2fs/super.c:3950
+ sanity_check_area_boundary+0x7c5/0xe20 fs/f2fs/super.c:4040
+ sanity_check_raw_super fs/f2fs/super.c:4215 [inline]
+ read_raw_super_block fs/f2fs/super.c:4625 [inline]
+ f2fs_fill_super+0x1920/0x7fa0 fs/f2fs/super.c:5160
+ get_tree_bdev_flags+0x430/0x4f0 fs/super.c:1872
+ vfs_get_tree+0x92/0x2a0 fs/super.c:1932
+ fc_mount fs/namespace.c:1198 [inline]
+ do_new_mount_fc fs/namespace.c:3772 [inline]
+ do_new_mount+0x319/0xdc0 fs/namespace.c:3848
+ do_mount fs/namespace.c:4181 [inline]
+ __do_sys_mount fs/namespace.c:4394 [inline]
+ __se_sys_mount+0x31d/0x420 fs/namespace.c:4371
+ do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
+ do_syscall_64+0x166/0x520 arch/x86/entry/syscall_64.c:84
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f2eb02deeaa
+Code: 56 53 b8 9d 00 00 00 0f 05 83 f8 ea 75 a2 c7 05 e4 5b 09 00 00 00 00 00 eb 96 e8 51 05 00 00 90 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 d8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffcaf01ba78 EFLAGS: 00000286 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 00007ffcaf01ba90 RCX: 00007f2eb02deeaa
+RDX: 0000200000000080 RSI: 0000200000000000 RDI: 00007ffcaf01ba90
+RBP: 0000200000000000 R08: 00007ffcaf01bad0 R09: 0000000000000000
+R10: 0000000000200000 R11: 0000000000000286 R12: 0000200000000080
+R13: 00007ffcaf01bad0 R14: 0000000000000003 R15: 0000000000200000
+ </TASK>
+---[ end trace ]---

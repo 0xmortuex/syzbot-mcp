@@ -1,0 +1,79 @@
+wwan wwan1: port wwan1mbim0 disconnected
+Oops: general protection fault, probably for non-canonical address 0xdffffc000000000b: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000058-0x000000000000005f]
+CPU: 0 UID: 0 PID: 9 Comm: kworker/0:0 Not tainted syzkaller #0 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.3-debian-1.16.3-2 04/01/2014
+Workqueue: usb_hub_wq hub_event
+RIP: 0010:klist_put+0x4d/0x1d0 lib/klist.c:212
+Code: c1 ea 03 80 3c 02 00 0f 85 74 01 00 00 48 b8 00 00 00 00 00 fc ff df 4c 8b 23 49 83 e4 fe 49 8d 7c 24 58 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 43 01 00 00 4c 89 e7 4d 8b 74 24 58 e8 cc ef 0c
+RSP: 0018:ffffc900000c7450 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: ffff888035673c80 RCX: 0000000000000000
+RDX: 000000000000000b RSI: ffffffff8bc8e645 RDI: 0000000000000058
+RBP: 0000000000000001 R08: 0000000000000000 R09: fffffbfff224ec84
+R10: ffffffff91276423 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000001 R14: ffffffff912763e0 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8880d5b4e000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffcc2839000 CR3: 000000003938c000 CR4: 0000000000352ef0
+Call Trace:
+ <TASK>
+ klist_del lib/klist.c:230 [inline]
+ klist_remove+0x14c/0x2e0 lib/klist.c:249
+ __device_release_driver drivers/base/dd.c:1357 [inline]
+ device_release_driver_internal+0x4fb/0x620 drivers/base/dd.c:1372
+ usb_driver_release_interface+0x10e/0x190 drivers/usb/core/driver.c:643
+ cdc_ncm_unbind+0x2ac/0x350 drivers/net/usb/cdc_ncm.c:1019
+ usbnet_disconnect+0x1e2/0x300 drivers/net/usb/usbnet.c:1692
+ usb_unbind_interface+0x1dd/0x9e0 drivers/usb/core/driver.c:461
+ device_remove drivers/base/dd.c:618 [inline]
+ device_remove+0x12a/0x180 drivers/base/dd.c:610
+ __device_release_driver drivers/base/dd.c:1349 [inline]
+ device_release_driver_internal+0x44e/0x620 drivers/base/dd.c:1372
+ bus_remove_device+0x2bc/0x560 drivers/base/bus.c:664
+ device_del+0x376/0x9b0 drivers/base/core.c:3965
+ usb_disable_device+0x367/0x810 drivers/usb/core/message.c:1484
+ usb_disconnect+0x2e2/0x9a0 drivers/usb/core/hub.c:2355
+ hub_port_connect drivers/usb/core/hub.c:5425 [inline]
+ hub_port_connect_change drivers/usb/core/hub.c:5725 [inline]
+ port_event drivers/usb/core/hub.c:5889 [inline]
+ hub_event+0x1bb1/0x4420 drivers/usb/core/hub.c:5971
+ process_one_work+0xac7/0x1b10 kernel/workqueue.c:3396
+ process_scheduled_works kernel/workqueue.c:3479 [inline]
+ worker_thread+0x5ef/0xe50 kernel/workqueue.c:3560
+ kthread+0x373/0x450 kernel/kthread.c:436
+ ret_from_fork+0x730/0xd60 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:klist_put+0x4d/0x1d0 lib/klist.c:212
+Code: c1 ea 03 80 3c 02 00 0f 85 74 01 00 00 48 b8 00 00 00 00 00 fc ff df 4c 8b 23 49 83 e4 fe 49 8d 7c 24 58 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 43 01 00 00 4c 89 e7 4d 8b 74 24 58 e8 cc ef 0c
+RSP: 0018:ffffc900000c7450 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: ffff888035673c80 RCX: 0000000000000000
+RDX: 000000000000000b RSI: ffffffff8bc8e645 RDI: 0000000000000058
+RBP: 0000000000000001 R08: 0000000000000000 R09: fffffbfff224ec84
+R10: ffffffff91276423 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000001 R14: ffffffff912763e0 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8880d5b4e000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055557a2d0a28 CR3: 000000002c457000 CR4: 0000000000352ef0
+----------------
+Code disassembly (best guess):
+   0:	c1 ea 03             	shr    $0x3,%edx
+   3:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1)
+   7:	0f 85 74 01 00 00    	jne    0x181
+   d:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  14:	fc ff df
+  17:	4c 8b 23             	mov    (%rbx),%r12
+  1a:	49 83 e4 fe          	and    $0xfffffffffffffffe,%r12
+  1e:	49 8d 7c 24 58       	lea    0x58(%r12),%rdi
+  23:	48 89 fa             	mov    %rdi,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 43 01 00 00    	jne    0x177
+  34:	4c 89 e7             	mov    %r12,%rdi
+  37:	4d 8b 74 24 58       	mov    0x58(%r12),%r14
+  3c:	e8                   	.byte 0xe8
+  3d:	cc                   	int3
+  3e:	ef                   	out    %eax,(%dx)
+  3f:	0c                   	.byte 0xc

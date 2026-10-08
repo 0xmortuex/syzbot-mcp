@@ -1,0 +1,745 @@
+
+
+<!doctype html>
+<html>
+<head>
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="/static/bootstrap.bundle.min.js" defer></script>
+	<link rel="stylesheet" href="/static/style.css"/>
+	<link rel="stylesheet" href="/static/dashboard.css"/>
+	<script src="/static/common.js"></script>
+	
+	
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116117799-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+			gtag('config', 'UA-116117799-1');
+		</script>
+	
+
+	<title>syzbot</title>
+</head>
+<body>
+	
+	<nav id="topbar" class="navbar navbar-light">
+		<div class="container-fluid d-flex align-items-center justify-content-between p-0">
+			<div class="d-flex align-items-center">
+				<a class="navbar-brand" href="/upstream">syzbot</a>
+				<select class="namespace" onchange="window.location.href = '/' + this.value + '';">
+					
+						<option value="android-5-10" >Android 5.10</option>
+						<option value="android-5-15" >Android 5.15</option>
+						<option value="android-54" >Android 5.4</option>
+						<option value="android-6-1" >Android 6.1</option>
+						<option value="android-6-12" >Android 6.12</option>
+						<option value="freebsd" >FreeBSD</option>
+						<option value="upstream" selected="1">Linux</option>
+						<option value="linux-5.15" >Linux 5.15</option>
+						<option value="linux-6.1" >Linux 6.1</option>
+						<option value="linux-6.6" >Linux 6.6</option>
+						<option value="netbsd" >NetBSD</option>
+						<option value="openbsd" >OpenBSD</option>
+						<option value="gvisor" >gVisor</option></select>
+			</div>
+
+			<div class="topbar-links">
+				
+				
+					<a href="https://syzkaller.appspot.com/_ah/conflogin?continue=https://syzkaller.appspot.com/upstream">sign-in</a> |
+				
+				<a href="https://groups.google.com/forum/#!forum/syzkaller" target="_blank">mailing list</a> |
+				<a href="https://github.com/google/syzkaller" target="_blank">source</a> |
+				<a href="https://github.com/google/syzkaller/blob/master/docs/syzbot.md" target="_blank">docs</a>
+				
+					| <a href="/upstream/syz-dungeon" title="Syzkaller Dungeon">🏰</a>
+				
+		</div>
+
+
+	
+	<div class="sub-nav">
+		<ul class="nav nav-pills">
+			<li class="nav-item">
+				<a class="nav-link active" href="/upstream">
+					<span style="color:DeepPink;">🐞 Open [1589]</span>
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="/upstream/subsystems">
+					<span style="color:DeepPink;">≡</span> Subsystems
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="/upstream/fixed">
+					<span style="color:ForestGreen;">🐞 Fixed [7529]</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="/upstream/invalid">
+					<span style="color:RoyalBlue;">🐞 Invalid [19702]</span>
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="/upstream/backports">
+					<span style="color:ForestGreen;">⬇</span> Missing Backports [223]
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="/upstream/graph/crashes">
+					<span style="color:ForestGreen;">≡</span> Crashes
+				</a>
+			</li>
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+					<span style="color:DarkOrange;">📈</span>Graphs
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item " href="/upstream/graph/bugs">Kernel Health</a></li>
+					<li><a class="dropdown-item " href="/upstream/graph/found-bugs">Bugs/Month</a></li>
+					<li><a class="dropdown-item " href="/upstream/graph/lifetimes">Bug Lifetimes</a></li>
+					<li><a class="dropdown-item " href="/upstream/graph/resolution">Bug Resolution Rate</a></li>
+					<li><a class="dropdown-item " href="/upstream/graph/fuzzing">Fuzzing</a></li>
+					
+				</ul>
+			</li>
+
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+					<span style="color:DarkOrange;">📈</span>Coverage
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item " href="/upstream/graph/coverage?period=quarter">Total</a></li>
+					<li><a class="dropdown-item " href="/upstream/coverage?period=month">Repo Heatmap</a></li>
+					
+						<li><a class="dropdown-item " href="/upstream/coverage/subsystems?period=month">Subsystems Heatmap</a></li>
+					
+				</ul>
+			</li>
+			
+
+			
+			<li class="nav-item">
+				<a class="nav-link " href="/upstream/ai">✨ AI</a>
+			</li>
+			
+
+			
+			<li class="nav-item ms-auto">
+				<a class="nav-link" href="mailto:syzkaller@googlegroups.com"><span style="color:ForestGreen;">💬</span> Send us feedback</a>
+			</li>
+			
+		</ul>
+	</div>
+	
+</nav>
+	
+
+	
+	
+		
+
+<!-- trimmed from https://syzkaller.appspot.com/upstream on 2026-10-08: first rows of each table -->
+<summary class="bug_list_caption">
+				open (1337)
+				<a id="open" href="#open">🔗</a>
+			</summary>
+			
+
+
+<table class="list_table">
+	<thead>
+	<tr>
+		
+		<th><a onclick="return sortTable(this, 'Title', textSort)" href="#">Title</a></th>
+		<th>
+			<a onclick="return sortTable(this, 'Rank 🛈', numSort)" href="#">Rank</a>
+			
+<a href="https://github.com/google/syzkaller/blob/master/pkg/report/README.md" title="help" target="_blank" class="info_link">🛈</a>
+
+		</th>
+		<th><a onclick="return sortTable(this, 'Repro', reproSort)" href="#">Repro</a></th>
+		<th><a onclick="return sortTable(this, 'Cause bisect', textSort)" href="#">Cause bisect</a></th>
+		<th><a onclick="return sortTable(this, 'Fix bisect', textSort)" href="#">Fix bisect</a></th>
+		<th><a onclick="return sortTable(this, 'Count', numSort)" href="#">Count</a></th>
+		<th><a onclick="return sortTable(this, 'Last', timeSort)" href="#">Last</a></th>
+		<th><a onclick="return sortTable(this, 'Reported', timeSort)" href="#">Reported</a></th>
+		
+		
+		<th><a onclick="return sortTable(this, 'Discussions', textSort)" href="#">Discussions</a></th>
+		
+		
+		
+		
+	</tr>
+	</thead>
+	<tbody><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=0f98b0c0bdeaab2dc2fd">inconsistent lock state in ccp_raw_event</a>
+					<span class="bug-label"><a href="/upstream?label=prio%3Alow">prio:low</a></span>
+					<span class="bug-label"><a href="/upstream/s/hwmon">hwmon</a></span>
+			</td>
+			<td class="stat">4</td>
+			<td class="stat">C</td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">47</td>
+			<td class="stat">9h14m</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac7dda8.8cdf6287.1eb53.0038.GAE@google.com">2h15m</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="2h15m"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=da94a51633758d13bd63">possible deadlock in nvmet_ctrl_free</a>
+					<span class="bug-label"><a href="/upstream/s/nvme">nvme</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Alow">prio:low</a></span>
+			</td>
+			<td class="stat">4</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">3</td>
+			<td class="stat">3d22h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac7c8e8.bbc4c7f9.15faa7.0005.GAE@google.com">3h43m</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="1h11m"><b>PATCH</b> [1h11m]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=eb4f9a996f9ad47f435d">KASAN: slab-use-after-free Read in acpi_ns_check_package_list</a>
+					<span class="bug-label"><a href="/upstream/s/acpica">acpica</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+					<span class="bug-label"><a href="/upstream?label=actionable">actionable</a></span>
+			</td>
+			<td class="stat">19</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">73d</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac70a20.a36481ec.1ba24c.0006.GAE@google.com">17h17m</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="17h17m"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=863936f50214e843ae0c">BUG: unable to handle kernel paging request in usb_driver_release_interface</a>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+					<span class="bug-label"><a href="/upstream/s/usb">usb</a></span>
+			</td>
+			<td class="stat">8</td>
+			<td class="stat">syz, C</td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">3</td>
+			<td class="stat">1d08h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac6345d.d03902a3.74d6f.0006.GAE@google.com">1d08h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="4h17m"><b>PATCH</b> [4h17m]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=2344fb8002f3ef5b1712">WARNING in hci_recv_frame (2)</a>
+					<span class="bug-label"><a href="/upstream/s/bluetooth">bluetooth</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+			</td>
+			<td class="stat">-1</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">5d15h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac5d1ad.353c8d8e.177895.000d.GAE@google.com">1d15h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="1d15h"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=f20755f37da70df33a16">KASAN: slab-use-after-free Read in mesh_send_sync</a>
+					<span class="bug-label"><a href="/upstream/s/bluetooth">bluetooth</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Anormal">prio:normal</a></span>
+			</td>
+			<td class="stat">19</td>
+			<td class="stat">syz</td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">5d18h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac5b02e.fe639fcc.32b100.000f.GAE@google.com">1d17h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="1d17h"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=947286c775f432b073a8">KASAN: slab-use-after-free Read in add_root_to_dirty_list</a>
+					<span class="bug-label"><a href="/upstream/s/btrfs">btrfs</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Anormal">prio:normal</a></span>
+					<span class="bug-label"><a href="/upstream?label=actionable">actionable</a></span>
+			</td>
+			<td class="stat">19</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">3</td>
+			<td class="stat">9h27m</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac5a5e1.9ad129c8.3ce5b3.0010.GAE@google.com">1d18h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="23h31m"><b>PATCH</b> [1d04h]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=55141a0ffa0d17f01c71">INFO: task hung in inet6_rtm_deladdr (3)</a>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+					<span class="bug-label"><a href="/upstream/s/net">net</a></span>
+			</td>
+			<td class="stat">1</td>
+			<td class="stat">syz</td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">20</td>
+			<td class="stat">6d03h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac531d8.9ad129c8.3ce5b3.0006.GAE@google.com">2d02h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="2d02h"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=1fed874be1d7e459b5a3">possible deadlock in l2cap_chan_connect (2)</a>
+					<span class="bug-label"><a href="/upstream/s/bluetooth">bluetooth</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+			</td>
+			<td class="stat">4</td>
+			<td class="stat">syz, C</td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">296</td>
+			<td class="stat">5m</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac51f8d.353c8d8e.177895.0006.GAE@google.com">2d04h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="1d15h"><span class="icon">&#128172;</span> 1 [1d15h]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=6227549bd2c8a1ec8ba0">KASAN: slab-use-after-free Write in ffs_data_clear</a>
+					<span class="bug-label"><a href="/upstream/s/usb">usb</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Anormal">prio:normal</a></span>
+					<span class="bug-label"><a href="/upstream?label=actionable">actionable</a></span>
+			</td>
+			<td class="stat">22</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">6d19h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac4626c.9ad129c8.3858c0.0043.GAE@google.com">2d17h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="19h40m"><b>PATCH</b> [19h40m]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=d0a52209bddfa0948065">WARNING in cfg80211_ibss_joined</a>
+					<span class="bug-label"><a href="/upstream/s/wireless">wireless</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Alow">prio:low</a></span>
+			</td>
+			<td class="stat">-1</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">6d20h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac43b15.34119e79.2f92f3.0039.GAE@google.com">2d20h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="1d06h"><b>PATCH</b> [1d06h]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=c6d8091b47243f2023b8">INFO: task hung in mmc_app_cmd</a>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+					<span class="bug-label"><a href="/upstream/s/mmc">mmc</a></span>
+			</td>
+			<td class="stat">1</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">35</td>
+			<td class="stat">3h01m</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac3d0e4.ae2c267a.265a6c.0002.GAE@google.com">3d03h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="2d07h"><b>PATCH</b> [2d07h]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=a2748ba908c108e7e525">KASAN: slab-out-of-bounds Write in utf32_to_utf8</a>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+			</td>
+			<td class="stat">21</td>
+			<td class="stat">C</td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">3d11h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac3be67.34119e79.2f92f3.0035.GAE@google.com">3d05h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="1d02h"><b>PATCH</b> [2d07h]</td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=f886305df0acc6fa097a">INFO: rcu detected stall in kswapd (4)</a>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+					<span class="bug-label"><a href="/upstream/s/fs">fs</a></span>
+					<span class="bug-label"><a href="/upstream/s/mm">mm</a></span>
+			</td>
+			<td class="stat">1</td>
+			<td class="stat">syz</td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">8</td>
+			<td class="stat">1d09h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac37675.63a243ec.3d2de0.0000.GAE@google.com">3d10h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="3d10h"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=609c80047e3e808b465c">kernel BUG in mark_free_pages</a>
+					<span class="bug-label"><a href="/upstream/s/pm">pm</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Alow">prio:low</a></span>
+			</td>
+			<td class="stat">-1</td>
+			<td class="stat">syz, C</td>
+			<td class="bisect_status">error</td>
+			<td class="bisect_status"></td>
+			<td class="stat ">13</td>
+			<td class="stat">3d15h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-bugs/6ac33576.53659fcc.25f34.0004.GAE@google.com">3d15h</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="2d07h"><b>PATCH</b> [2d07h]</td>
+			
+			
+			
+			
+		</tr></tbody>
+</table>
+<summary class="bug_list_caption">
+				moderation (254)
+				<a id="moderation2" href="#moderation2">🔗</a>
+			</summary>
+			
+
+
+<table class="list_table">
+	<thead>
+	<tr>
+		
+		<th><a onclick="return sortTable(this, 'Title', textSort)" href="#">Title</a></th>
+		<th>
+			<a onclick="return sortTable(this, 'Rank 🛈', numSort)" href="#">Rank</a>
+			
+<a href="https://github.com/google/syzkaller/blob/master/pkg/report/README.md" title="help" target="_blank" class="info_link">🛈</a>
+
+		</th>
+		<th><a onclick="return sortTable(this, 'Repro', reproSort)" href="#">Repro</a></th>
+		<th><a onclick="return sortTable(this, 'Cause bisect', textSort)" href="#">Cause bisect</a></th>
+		<th><a onclick="return sortTable(this, 'Fix bisect', textSort)" href="#">Fix bisect</a></th>
+		<th><a onclick="return sortTable(this, 'Count', numSort)" href="#">Count</a></th>
+		<th><a onclick="return sortTable(this, 'Last', timeSort)" href="#">Last</a></th>
+		<th><a onclick="return sortTable(this, 'Reported', timeSort)" href="#">Reported</a></th>
+		
+		
+		<th><a onclick="return sortTable(this, 'Discussions', textSort)" href="#">Discussions</a></th>
+		
+		
+		
+		
+	</tr>
+	</thead>
+	<tbody><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=998e00530b55c5fff13f">KASAN: slab-use-after-free Read in printer_func_unbind</a>
+					<span class="bug-label"><a href="/upstream/s/usb">usb</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Anormal">prio:normal</a></span>
+			</td>
+			<td class="stat">19</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">2</td>
+			<td class="stat">3d08h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-upstream-moderation/6ac7fcea.8cdf6287.1eb53.003b.GAE@google.com">now</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="never"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=3d14c8e2999efd7beb27">BUG: soft lockup in aoecmd_cfg (4)</a>
+					<span class="bug-label"><a href="/upstream/s/block">block</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Alow">prio:low</a></span>
+			</td>
+			<td class="stat">1</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">2</td>
+			<td class="stat">11h40m</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-upstream-moderation/6ac7fa67.a150a118.27e199.001b.GAE@google.com">12m</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="never"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=67f95ac94629b49c9ded">KASAN: slab-use-after-free Read in add_to_unconfirmed</a>
+					<span class="bug-label"><a href="/upstream/s/nfs">nfs</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Ahigh">prio:high</a></span>
+			</td>
+			<td class="stat">19</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">2</td>
+			<td class="stat">4d02h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-upstream-moderation/6ac7d0a1.8cdf6287.1eb53.0037.GAE@google.com">3h10m</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="never"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=96a17b2abf8665f6903b">WARNING: lock held when returning to user space in blk_mq_freeze_queue_nomemsave</a>
+					<span class="bug-label"><a href="/upstream/s/block">block</a></span>
+					<span class="bug-label"><a href="/upstream?label=prio%3Alow">prio:low</a></span>
+			</td>
+			<td class="stat">4</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">4d04h</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-upstream-moderation/6ac7bc0c.70ed5d86.2ac85.000a.GAE@google.com">4h38m</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="never"></td>
+			
+			
+			
+			
+		</tr><tr>
+			
+			<td class="title">
+				<a href="/bug?extid=18a47cfd5595accbfbc0">KCSAN: data-race in do_sync_mmap_readahead / do_sync_mmap_readahead (11)</a>
+					<span class="bug-label"><a href="/upstream/s/mm">mm</a></span>
+					<span class="bug-label"><a href="/upstream?label=race%3Abenign">race:benign</a></span>
+			</td>
+			<td class="stat">6</td>
+			<td class="stat"></td>
+			<td class="bisect_status"></td>
+			<td class="bisect_status"></td>
+			<td class="stat ">1</td>
+			<td class="stat">8h48m</td>
+			<td class="stat">
+				
+					<a href="https://groups.google.com/d/msgid/syzkaller-upstream-moderation/6ac7816d.bbc4c7f9.15faa7.0002.GAE@google.com">8h48m</a>
+				
+			</td>
+			
+			
+			
+			<td class="discussions" sort-value="never"></td>
+			
+			
+			
+			
+		</tr></tbody>
+</table>

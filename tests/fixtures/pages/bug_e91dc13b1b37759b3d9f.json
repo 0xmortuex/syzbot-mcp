@@ -1,0 +1,456 @@
+{
+ "version": 1,
+ "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+ "id": "b996cc5aef7ac7c49e6ce8ef24e64cdbc35cbd03",
+ "status": "upstream: reported C repro on 2026/10/02 17:14",
+ "first-crash": "2026-10-01T17:49:09.103654Z",
+ "last-crash": "2026-10-08T19:59:05.427958Z",
+ "cause-commit": {
+  "title": "wifi: ath9k: Clean up device initialisation guards",
+  "link": "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=1af8dc9ca726cf53767f9c0661171396f95c146a",
+  "hash": "1af8dc9ca726cf53767f9c0661171396f95c146a",
+  "repo": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+  "branch": "master",
+  "date": "2026-09-08T17:05:18Z"
+ },
+ "discussions": [
+  "https://groups.google.com/d/msgid/syzkaller-bugs/6abfe679.b50370da.302ea9.000d.GAE@google.com"
+ ],
+ "crashes": [
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "syz-reproducer": "/text?tag=ReproSyz&x=12361b15580000",
+   "c-reproducer": "/text?tag=ReproC&x=155bc725580000",
+   "repro-opts": "{\"procs\":1,\"slowdown\":1,\"sandbox\":\"none\",\"sandbox_arg\":0,\"tun\":true,\"netdev\":true,\"close_fds\":false,\"callcomments\":true}",
+   "kernel-config": "/text?tag=KernelConfig&x=9d4242cb1c54cdf7",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "d24e8ac715de2e16a53c144005b1863660a5fbea",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/38f7f0d1b72602afb2b8328c83c6eed1f20a5336",
+   "syzkaller-commit": "38f7f0d1b72602afb2b8328c83c6eed1f20a5336",
+   "crash-report-link": "/text?tag=CrashReport&x=17c173f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=23e5acac5c98285f",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "6addb4f385570ebc11c4eb499a4f1c149f313e84",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=10bc0715580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=23e5acac5c98285f",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "a74306e2e676f9775457366fc047a660fbf02f26",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=14f8c7f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=23e5acac5c98285f",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "a74306e2e676f9775457366fc047a660fbf02f26",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=13e81ec9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=23e5acac5c98285f",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "e767a4ea70a3992c37ed604157d32f0dfbf9b1e3",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=16d487f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=23e5acac5c98285f",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "e767a4ea70a3992c37ed604157d32f0dfbf9b1e3",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=15f307f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=9d4242cb1c54cdf7",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "ce1e0223d8ad4211275c82a17ed6d43ab81e13d9",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=12a75035580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=9d4242cb1c54cdf7",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "ce1e0223d8ad4211275c82a17ed6d43ab81e13d9",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=17291bf5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=9d4242cb1c54cdf7",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "ce1e0223d8ad4211275c82a17ed6d43ab81e13d9",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=102fdb15580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=abe4f04b5ca63821",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "d24e8ac715de2e16a53c144005b1863660a5fbea",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/6d32eb1ff35d349359a42fce2a16b243beb93c15",
+   "syzkaller-commit": "6d32eb1ff35d349359a42fce2a16b243beb93c15",
+   "crash-report-link": "/text?tag=CrashReport&x=1416d3f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=9d4242cb1c54cdf7",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "d24e8ac715de2e16a53c144005b1863660a5fbea",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/6d32eb1ff35d349359a42fce2a16b243beb93c15",
+   "syzkaller-commit": "6d32eb1ff35d349359a42fce2a16b243beb93c15",
+   "crash-report-link": "/text?tag=CrashReport&x=137ecbf5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "42bcac323cc3b16566fed8c5b250318ad02a0de0",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/b2734a597288cbabb88a4a79b3cde12822ba5a9b",
+   "syzkaller-commit": "b2734a597288cbabb88a4a79b3cde12822ba5a9b",
+   "crash-report-link": "/text?tag=CrashReport&x=15fb7715580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "42bcac323cc3b16566fed8c5b250318ad02a0de0",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/4f6a9fcfef1628f6ac08222857c6e55d4658622f",
+   "syzkaller-commit": "4f6a9fcfef1628f6ac08222857c6e55d4658622f",
+   "crash-report-link": "/text?tag=CrashReport&x=15c8300d580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "42bcac323cc3b16566fed8c5b250318ad02a0de0",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "syzkaller-commit": "6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "crash-report-link": "/text?tag=CrashReport&x=15fdf835580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "42bcac323cc3b16566fed8c5b250318ad02a0de0",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "syzkaller-commit": "6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "crash-report-link": "/text?tag=CrashReport&x=137cf835580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "42bcac323cc3b16566fed8c5b250318ad02a0de0",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "syzkaller-commit": "6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "crash-report-link": "/text?tag=CrashReport&x=1797400d580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "42bcac323cc3b16566fed8c5b250318ad02a0de0",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "syzkaller-commit": "6520ecdbb32f77ab7fda56f3f7ac2e81b97f724d",
+   "crash-report-link": "/text?tag=CrashReport&x=141e21c9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "42bcac323cc3b16566fed8c5b250318ad02a0de0",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=170fef25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=17d99ff5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=15503835580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=124b6ff5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=12fb01c9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=1240ef25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=17527ff5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=17196f25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=125401c9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=116c6f25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=14dfaf25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=10e6c715580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=16c9af25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=16aaaf25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=15ae77f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "syzkaller-commit": "f7710056e475eaf2fdc16d704b532c57d6d1edcf",
+   "crash-report-link": "/text?tag=CrashReport&x=149d7ec9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=16d94ff5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=17ebde99580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=14e877f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=16dfb7f5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=1584aff5580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=16864715580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=160e9835580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=14becf25580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=123abec9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=150cbec9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=155b8715580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "syzkaller-commit": "af63e9950cc4e208a4b936b765d4f2066bf60018",
+   "crash-report-link": "/text?tag=CrashReport&x=145f3ec9580000"
+  },
+  {
+   "title": "KASAN: slab-use-after-free Read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=7f0127eb11110629",
+   "kernel-source-git": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git",
+   "kernel-source-commit": "5926a7da87895b1e1e1b3789ef364a11cc54d210",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=104b37f5580000"
+  },
+  {
+   "title": "KFENCE: use-after-free read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=929e4854a828f434",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "7b63ef2d55f24519e7e9e5f4d15dbea03f126e40",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/4f6a9fcfef1628f6ac08222857c6e55d4658622f",
+   "syzkaller-commit": "4f6a9fcfef1628f6ac08222857c6e55d4658622f",
+   "crash-report-link": "/text?tag=CrashReport&x=1337323e580000"
+  },
+  {
+   "title": "KFENCE: use-after-free read in tasklet_action_common",
+   "kernel-config": "/text?tag=KernelConfig&x=9d4242cb1c54cdf7",
+   "kernel-source-git": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "kernel-source-commit": "ce1e0223d8ad4211275c82a17ed6d43ab81e13d9",
+   "syzkaller-git": "https://github.com/google/syzkaller/commits/57bbd979bc50a3acd0eac610ef944726ba358063",
+   "syzkaller-commit": "57bbd979bc50a3acd0eac610ef944726ba358063",
+   "crash-report-link": "/text?tag=CrashReport&x=14741725580000"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+  "kcsan": {
+    "title": "KCSAN: data-race in do_notify_parent_cldstop / wait_consider_task (4)",
+    "bug": "https://syzkaller.appspot.com/bug?extid=0f4d5234b6cb5e479e5d",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=17b4db15580000"
+  },
+  "hung_task": {
+    "title": "INFO: task hung in inet6_rtm_deladdr (3)",
+    "bug": "https://syzkaller.appspot.com/bug?extid=55141a0ffa0d17f01c71",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=1602abf5580000"
+  },
+  "ubsan": {
+    "title": "UBSAN: shift-out-of-bounds in __f2fs_commit_super",
+    "bug": "https://syzkaller.appspot.com/bug?extid=dfcbc1741488709db4b2",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=11029405580000"
+  },
+  "kasan_uaf": {
+    "title": "KASAN: slab-use-after-free Read in acpi_ns_check_package_list",
+    "bug": "https://syzkaller.appspot.com/bug?extid=eb4f9a996f9ad47f435d",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=147067b1580000"
+  },
+  "kasan_oob": {
+    "title": "KASAN: slab-out-of-bounds Write in utf32_to_utf8",
+    "bug": "https://syzkaller.appspot.com/bug?extid=a2748ba908c108e7e525",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=17a64f25580000"
+  },
+  "null_deref": {
+    "title": "KASAN: null-ptr-deref Write in fput",
+    "bug": "https://syzkaller.appspot.com/bug?extid=5d4e96acd0febccb5e87",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=153a93b9580000"
+  },
+  "lockdep": {
+    "title": "possible deadlock in nvmet_ctrl_free",
+    "bug": "https://syzkaller.appspot.com/bug?extid=da94a51633758d13bd63",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=138e97f5580000"
+  },
+  "paging": {
+    "title": "BUG: unable to handle kernel paging request in usb_driver_release_interface",
+    "bug": "https://syzkaller.appspot.com/bug?extid=863936f50214e843ae0c",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=15017835580000"
+  },
+  "warning": {
+    "title": "WARNING in hci_recv_frame (2)",
+    "bug": "https://syzkaller.appspot.com/bug?extid=2344fb8002f3ef5b1712",
+    "report": "https://syzkaller.appspot.com/text?tag=CrashReport&x=147df6c9580000"
+  }
+}

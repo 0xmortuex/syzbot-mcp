@@ -1,0 +1,38 @@
+==================================================================
+BUG: KCSAN: data-race in do_notify_parent_cldstop / wait_consider_task
+
+write to 0xffff8881049cca94 of 4 bytes by task 6287 on cpu 0:
+ wait_task_stopped kernel/exit.c:1369 [inline]
+ wait_consider_task+0x5db/0x15f0 kernel/exit.c:1555
+ do_wait_pid kernel/exit.c:1657 [inline]
+ __do_wait+0x33c/0x500 kernel/exit.c:1692
+ do_wait+0xb6/0x230 kernel/exit.c:1733
+ kernel_wait4+0x19f/0x210 kernel/exit.c:1892
+ __do_sys_wait4 kernel/exit.c:1920 [inline]
+ __se_sys_wait4 kernel/exit.c:1916 [inline]
+ __x64_sys_wait4+0x91/0x120 kernel/exit.c:1916
+ x64_sys_call+0x108f/0x2550 arch/x86/include/generated/asm/syscalls_64.h:62
+ do_syscall_x64 arch/x86/entry/syscall_64.c:61 [inline]
+ do_syscall_64+0x112/0x360 arch/x86/entry/syscall_64.c:84
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+read to 0xffff8881049cca94 of 4 bytes by task 6289 on cpu 1:
+ do_notify_parent_cldstop+0x1fa/0x2f0 kernel/signal.c:2396
+ ptrace_stop+0x2fa/0x590 kernel/signal.c:2514
+ ptrace_signal+0x52/0x240 kernel/signal.c:2820
+ get_signal+0x799/0xf10 kernel/signal.c:2999
+ arch_do_signal_or_restart+0x96/0x480 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
+ exit_to_user_mode_loop+0x15d/0x8c0 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:343 [inline]
+ do_syscall_64+0x212/0x360 arch/x86/entry/syscall_64.c:89
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+value changed: 0x00000013 -> 0x00000000
+
+Reported by Kernel Concurrency Sanitizer on:
+CPU: 1 UID: 0 PID: 6289 Comm: syz.3.813 Not tainted syzkaller #0 PREEMPT(lazy) 
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/16/2026
+==================================================================

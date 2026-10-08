@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.0xmortuex/syzbot-mcp",
+  "description": "Fetch and explain syzbot Linux kernel bug reports: KASAN, KCSAN, lockdep, WARNING, hung tasks.",
+  "repository": { "url": "https://github.com/0xmortuex/syzbot-mcp", "source": "github" },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "syzbot-mcp",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        { "name": "SYZBOT_MCP_CACHE", "description": "Cache directory (default: the user cache dir)", "isRequired": false },
+        { "name": "SYZBOT_MCP_MIN_INTERVAL", "description": "Seconds between requests to syzbot (default 1.5, minimum 1)", "isRequired": false }
+      ]
+    }
+  ]
+}
